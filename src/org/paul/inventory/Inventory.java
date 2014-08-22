@@ -35,21 +35,24 @@ public class Inventory {
 			
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String returnAllPcParts() {
+	public Response returnAllPcParts() {
 		
 		// Normally we would hit a data base here and get a resultset back
 		// toJsonArrary would be altered to convert a rs to json directly
 		
 		String returnString = null;
+		Response rb = null;
+		
 		try {
 			JSONArray json = ToJson.toJSONArray(parts);
 			returnString = json.toString();
+			rb = Response.ok(returnString).build();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return returnString;
+		return rb;
 		
 	}
 
